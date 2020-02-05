@@ -10,6 +10,7 @@ import (
 // 1~100까지 난수 생성, 같은 난수 나오면 기존 난수 모두 더해 리턴
 func main() {
 	var wait sync.WaitGroup
+	mutex := sync.RWMutex{}
 
 	defer fmt.Println("main go routine ends!")
 
@@ -21,7 +22,9 @@ func main() {
 	wait.Add(1)
 	go func() {
 		defer func() {
+			mutex.Lock() // write protection since wait is pointer
 			wait.Done()
+			mutex.Unlock()
 			fmt.Println("createFunc done")
 		}()
 
@@ -45,7 +48,9 @@ func main() {
 	wait.Add(1)
 	go func() {
 		defer func() {
+			mutex.Lock()
 			wait.Done()
+			mutex.Unlock()
 			fmt.Println("checkFunc done")
 		}()
 
@@ -82,7 +87,9 @@ func main() {
 	wait.Add(1)
 	go func() {
 		defer func() {
+			mutex.Lock()
 			wait.Done()
+			mutex.Unlock()
 			fmt.Println("printFunc done")
 		}()
 
