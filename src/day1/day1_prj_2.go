@@ -40,24 +40,27 @@ func main() {
 	card = shuffleCard(card, 5)
 	fmt.Println("shuffled :", card)
 
-	/*
-		player := make([][]int, 2, 2)
-		cnt := 0
+	player := make([][]int, 2, 2)
+	cnt := 0
 
-		fmt.Println("======================================")
-		fmt.Printf("ining\tr_idx\trandom\tcard\n")
+	fmt.Println("======================================")
+	fmt.Printf("ining\tr_idx\trandom\tcard\n")
 
-		for i := 0; i < 2; i++ {
-			for j := 0; j < 2; j++ {
-				fmt.Println(cnt + 1)
-				r_num := r.Intn(len(card) - 1)
-				player[i][j] = card[r_num]
-				card = remove(card, r_num)
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 2; j++ {
+			fmt.Println(cnt + 1)
+			r_num := r.Intn(len(card) - 1)
+			player[i][j] = card[r_num]
+			card = remove(card, r_num)
 
-				// fmt.Printf("%d\t%d\t%d\t%d\n", len(card), r_num, player[i][j], card)
-				cnt++
-			}
+			// fmt.Printf("%d\t%d\t%d\t%d\n", len(card), r_num, player[i][j], card)
+			cnt++
 		}
+	}
+
+	/*
+
+
 
 		p1_out := (player[0][0] + player[0][1]) % 10
 		p2_out := (player[1][0] + player[1][1]) % 10
